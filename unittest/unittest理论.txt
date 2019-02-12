@@ -1,0 +1,23 @@
+unittest————————
+    可以做单元测试，web UI自动化测试，接口API自动化测试
+    核心内容是：
+        testfixture  testcase  testsuit  test runner/report
+    
+    testfixture————
+        setUP()         测试函数运行前运行
+        teardown()      每个测试函数运行完成后运行
+        setUpClass()    必用@classmethod 所有test前运行一次
+        tearDownClass() 必用@classmethod 所有test后运行一次
+
+    testcase————
+        编写用例必继承TestCase类——
+        eg: import unittest 
+            class TestCase(unittest.TestCase):
+        ps: 用例中的方法名需要以test开头，才能跑
+        跳过装饰测试——
+            @unittest.skip(reason)                      无条件跳过    
+            @unittest.skipif(condition, reason)         条件为真时跳过，跳过后才显示reason
+            @unittest.skipUnless(condition, reason)     条件为假时跳过，跳过后才显示reason
+            @unittest.expectedFailure                   测试方法失败
+            
+

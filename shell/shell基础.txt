@@ -1,0 +1,208 @@
+常用命令——————
+    route                       查看路由
+    route add -net 4.0.0.0 netmask 255.255.0.0      添加路由
+    route del -net 4.0.0.0 netmask 255.255.0.0      删除路由
+    route add default gw 8.40.192.1                 添加临时网关
+    cat /proc/cpuinfo|grep 模块名                   查询CPU
+    cat /proc/version                              查询系统版本
+    cat /proc/smio_host                            查询服务器磁盘信息
+    diff -rp 文件1 文件2    比较文件
+    md5sum 文件名           查询文件的md5值
+    zip -p -r zhaosiyi.zip  zhaosiyi                压缩文件zhaosiyi到zhaosiyi.zip中
+    echo “写入内容” > demo      将内容覆盖写入demo文件中
+    echo “写入内容” >> demo     将内容添加写入demo文件中
+    echo `ps -ef | grep web` > demo     将``中命令返回值写入文件中
+    `命令`                      获取命令返回值
+    rpm -qa | grep 安装文件名   查询安装名
+    rpm -e 安装文件名           卸载软件 
+    printf                     打印，使用该命令比使用echo的移植性好
+    passwd                     修改用户密码
+    du -sh 文件名               查询文件大小
+    df -l                      查询磁盘大小
+    export PATH=$PATH:/home/sundy                   加入环境变量
+    shutdown -h now             马上关机
+    ps aux                      BSD显示进程
+    ps -ef                      标准输出显示进程
+    ifconfig  eth0  up/down     开启/断开网口
+    ifconfig  -a                查询所有网口
+    ethtool 网口名              查询网口信息
+    pidof ./dsware              精确查询进程号
+    pgrep dsware                模糊查询进程号
+    date                        查询时间
+    date +%s                    查询现在距离的秒数
+    sh -c ls /opt/dsware/demo   查询同级文件
+    iostat -xdmt dev 1 3        查询IO情况，跟的变量为盘符，间隔时间，次数
+    nohup command &             后台运作命令
+    which                       查询可执行文件（在path变量指定的路径）
+    whereis                     查询文件位置
+    locate                      配合数据库查看文件位置
+    find                        实际搜寻硬盘查询文件名称
+    last reboot                 查询节点掉电时间
+    rpm -qa |grep -i MySQL      检查系统同是否安装MySQL
+    rpm -e 安装包                卸载安装包
+    cat *log*|grep "字段"       查询文件中的某字段
+    zcat *dsware*| grep -a "字段"   查询压缩文件中的某字段
+    tar
+
+shell语法——————
+    变量————
+        定义——
+            yourname="hello"
+            变量名和等号之间不能有空格，不能使用关键字（可以通过help查询关键字）
+        使用——
+            ps: echo "$yourName is very happy"
+            ps: echo "${hello}world"            #·                   推荐使用
+        删除——
+            unset 变量名
+        其它——
+            支持二次赋值，但是使用变量不能新赋值，XX $yourname="Lily"
+            
+    字符————
+        定义——
+            单引号下的字符，不支持使用便令，不支持转义符，单引号中可以有双引号
+            双引号下的字符，支持使用转义符，双引号中可以有单引号
+        获取长度——
+            echo ${#string}
+        提取字符串——
+            echo ${string:1:2}  1为从哪个开始取数据，2为取多少长度
+            ps: 字符串索引是从0开始取
+        查找字符串——
+            expr index ${string} d    查找第一个出现d的位置
+            expr index ${string} dl   查找第一个出现d或l的位置
+
+    参数传递————
+        参数使用——
+            ps: sh test.sh 1 2 "name"
+                1 第一个参数， 使用：$1
+                2 第二个参数， 使用：$2
+                name 第三个参数， 使用：$3
+        其它使用方法——
+            $#  参数个数
+            $*  参数的字符串（以空格隔开）
+            $@  参数的数组，可以遍历
+    数组————
+        定义——
+            name=（1 2 3）  中间以空隔隔开
+            name[0]=1
+        读写——
+            ${name[0]}      第0个元素
+            ${name[*]}      所有元素的字符串
+            ${name[@]}      所有元素
+        获取长度——
+            ${#name[*]}     元素个数（不管元素本身字符串的长度）
+            ${#name[@]}     
+    运算————
+        $a + $b 
+        $a - $b
+        $a \* $b 
+        $a / $b 
+        $a % $b 
+        $a == $b 
+        $a != $b 
+    
+    条件运算符————
+        -eq     相等
+        -ne     不等
+        -qt     左大于右
+        -lt     左小于右
+        -ge     左大于等于右
+        -le     左小于等于右
+        使用——
+            if [ $a -eq $b ]
+            then
+                echo "a等于b"
+            else
+                echo "a不等于b"
+            fi 
+            if [ $a -eq $b ];then echo "a等于b";exit 1;else echo "a不等于b";fi
+            if [ $a ];then echo "yes";fi
+        逻辑运算——
+            cmd1 && cmd2        cmd1为true的时候才执行cmd2
+            cmd1 || cmd2        cmd1为false的时候才执行cmd2
+        
+        布尔运算符——
+            ！  非
+            -o  或
+            -a  与
+            eg：if [ 2 -no 1 -a 1 -eq 1 ]
+        字符串运算符——
+            =   相等
+            !=  不相等
+            -z  长度为0
+            -n  长度不为0
+            str 是否为空
+            eg: if [ $a ]
+        文件测试运算符——
+            -b file     块设备文件
+            -c file     字符设备文件
+            -d file     目录
+            -f file     普通文件（非块和目录）
+            -r file     可读文件
+            -w file     可写文件
+            -s file     为空
+            -e file     存在
+        echo——
+            换行            echo -e "ok!\n"     # -e转义
+            显示不换行      echo -e "ok!\n\c"
+            不进行转义或取变量，使用单引号
+    
+    循环————
+        for——
+            for i in 1 2 a ab;do echo $i;done
+            for((i=1;i<=5;i++));do echo $i;done
+        while——
+            int=1
+            while(($int<5))
+            do
+                echo $int
+                let "int++"
+            done
+        break——
+            int=1
+            while(($int<5))
+            do
+                echo "$int"
+                let "int++"
+                if [ $int == 3 ]
+                then
+                    echo "int==3,then break"
+                    break
+                fi
+            done
+    
+    重定向————
+        error——
+            command 2 > file
+            command 2 >> file
+        error和out——
+            command > file 2>&1
+            command >> file 2>&1
+        禁止输出——
+            command > /dev/null
+    
+    引用其他sh脚本中的变量————
+        在需要引用test.sh的脚本demo.sh中,输入
+        . ./test.sh
+        echo "test 中的：$url"
+        demo文件需要添加执行权限，test不不需要添加执行权限
+    
+    注释————
+        不支持多行注释
+        只能一行一行的注释，使用#号
+    
+    函数定义————
+        demoFun（）{
+            vars=1
+            echo “this is a $1”
+            return $vars 
+        }
+        demoFun 1       # 函数的调用，可以跟参数，在函数中用$1指代第一个参数
+        ps: 获取返回值，out=$?
+            函数中的变量只能在函数中用，函数返回值只能为数字
+
+
+
+        
+
+        
+    
