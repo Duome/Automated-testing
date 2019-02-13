@@ -1,4 +1,33 @@
+
 unittest————————
+
+    单元————
+        这里的单元指一个函数，一个模块，一个类等
+
+    断言————
+        断言方法为3种：
+        检测两个值的大小     assertEqual
+        检测逻辑表达式值     assertTrue/assertFalse
+        检测异常            assertRaises
+        Method	                    Checks that
+        assertEqual(a, b)	        a == b
+        assertNotEqual(a, b)	    a != b
+        assertGreater(a, b)	        a > b
+        assertGreaterEqual(a, b)	a >= b
+        assertLess(a, b)	        a < b
+        assertLessEqual(a, b)	    a <= b
+        assertTrue(x)	            bool(x) is True
+        assertFalse(x)	            bool(x) is False
+        assertIs(a, b)	            a is b
+        assertIsNot(a, b)	        a is not b
+        assertIsNone(x)	            x is None
+        assertIsNotNone(x)	        x is not None
+        assertIn(a, b)	            a in b
+        assertNotIn(a, b)	        a not in b
+        assertIsInstance(a, b)	    isinstance(a, b)
+        assertNotIsInstance(a, b)	not isinstance(a, b)
+
+    应用————
     可以做单元测试，web UI自动化测试，接口API自动化测试
     核心内容是：
         testfixture  testcase  testsuit  test runner/report

@@ -3,7 +3,7 @@ import unittest
 import os
 from HTMLTestRunner import HTMLTestRunner
 """
-    
+    测试框架
 """
 case_path = os.path.join(os.getcwd())
 

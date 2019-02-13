@@ -1,0 +1,25 @@
+
+robotframework自动化测试————
+
+    特点————
+        使用简单
+        库丰富
+        编程测试用例（便于扩展）
+        开发系统关键字
+        ps: robotframework.org test libraries(常用的库)
+    常用的库————
+        autoIT（上传和下载的弹出狂）
+        http
+        Selenium
+        diff比较
+        database数据库
+        ps：standard自带库
+    优点————
+        提供逻辑    支持if语句和for循环
+    架构————
+        底层  系统接口 python语言
+        测试库API  测试框架，读数据
+        测试数据语法
+
+
+

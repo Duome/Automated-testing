@@ -1,0 +1,14 @@
+单元测试————
+
+    作用——
+        统一用例编写规范
+        比较方法专业 ps：断言
+        测试日志丰富 ps：统计失败用例数，成功用例数，执行时间
+
+    应用——
+        单元测试               unittest
+        HTTP接口自动化测试      unittest + Requests
+        WebUI自动化测试        unittest + Selenium
+        移动自动化测试          unittest + Appium
+
+    
